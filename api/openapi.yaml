@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  title: alertmanager
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /docs/swagger.json:
+    get:
+      operationId: get_swagger_json
+      responses:
+        "200":
+          content: {}
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+  /docs:
+    get:
+      operationId: get_docs
+      responses:
+        "200":
+          content: {}
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+  /health_check:
+    get:
+      operationId: get_health_check
+      responses:
+        "200":
+          content: {}
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+  /client_apps:
+    get:
+      operationId: get_client_app_get_all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ClientAppSchema'
+                type: array
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+    put:
+      operationId: put_client_app_put
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientAppSchema'
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+  /client_apps/{id}:
+    delete:
+      operationId: delete_client_app_get_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+    get:
+      operationId: get_client_app_get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientAppSchema'
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+    post:
+      operationId: post_client_app_post
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ClientAppSchema'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientAppSchema'
+          description: A successful response
+      x-google-backend:
+        address: alertmanager
+        protocol: h2
+        path_translation: APPEND_PATH_TO_ADDRESS
+        deadline: 30s
+      x-codegen-request-body-name: requestBody
+components:
+  schemas:
+    ClientAppSchema:
+      example:
+        deleted: true
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        billing_id: billing_id
+        contract: contract
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        url: url
+        labels: "{}"
+        token: token
+      properties:
+        updated_at:
+          format: date-time
+          type: string
+        name:
+          type: string
+        deleted:
+          type: boolean
+        contract:
+          type: string
+        labels:
+          nullable: true
+          type: object
+        id:
+          type: string
+        token:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        url:
+          type: string
+        billing_id:
+          type: string
+      required:
+      - id
+      type: object
+x-original-swagger-version: "2.0"

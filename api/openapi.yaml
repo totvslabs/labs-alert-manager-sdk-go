@@ -4,7 +4,167 @@ info:
   version: 1.0.0
 servers:
 - url: /
+security:
+- auth_token: []
 paths:
+  /:
+    get:
+      operationId: get_welcome
+      responses:
+        "200":
+          content: {}
+          description: A successful response
+      tags:
+      - welcome
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+  /channels:
+    get:
+      operationId: get_policy_channels_get_all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginationSchema'
+          description: A successful response
+      tags:
+      - channels
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+    post:
+      operationId: post_policy_channels_post
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PolicyChannelSchema'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelSchema'
+          description: A successful response
+      tags:
+      - channels
+      x-codegen-request-body-name: requestBody
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+  /channels/test:
+    post:
+      operationId: post_policy_channels_test
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PolicyChannelSchema'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelSchema'
+          description: A successful response
+      tags:
+      - channels
+      x-codegen-request-body-name: requestBody
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+  /channels/{id}:
+    delete:
+      operationId: delete_policy_channels_delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelSchema'
+          description: A successful response
+      tags:
+      - channels
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+    get:
+      operationId: get_policy_channels_get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelSchema'
+          description: A successful response
+      tags:
+      - channels
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+    put:
+      operationId: put_policy_channels_put
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PolicyChannelSchema'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyChannelSchema'
+          description: A successful response
+      tags:
+      - channels
+      x-codegen-request-body-name: requestBody
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
   /docs/swagger.json:
     get:
       operationId: get_swagger_json
@@ -12,23 +172,111 @@ paths:
         "200":
           content: {}
           description: A successful response
+      tags:
+      - docs
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
-  /docs:
+        protocol: h2
+  /docs/swagger.yml:
     get:
-      operationId: get_docs
+      operationId: get_swagger_yml
       responses:
         "200":
           content: {}
           description: A successful response
+      tags:
+      - docs
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
+        protocol: h2
+  /events:
+    get:
+      operationId: get_events_get_all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginationSchema'
+          description: A successful response
+      tags:
+      - events
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+    post:
+      operationId: post_events_post
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/EventSchema'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSchema'
+          description: A successful response
+      tags:
+      - events
+      x-codegen-request-body-name: requestBody
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+  /events/parameters:
+    get:
+      operationId: get_events_parameters_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EventSchema'
+                type: array
+          description: A successful response
+      tags:
+      - events
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+  /events/{id}:
+    get:
+      operationId: get_events_get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSchema'
+          description: A successful response
+      tags:
+      - events
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
   /health_check:
     get:
       operationId: get_health_check
@@ -36,149 +284,405 @@ paths:
         "200":
           content: {}
           description: A successful response
+      tags:
+      - health_check
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
-  /client_apps:
+        protocol: h2
+  /notifications:
     get:
-      operationId: get_client_app_get_all
+      operationId: get_notification_log_get_all
       responses:
         "200":
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/ClientAppSchema'
-                type: array
+                $ref: '#/components/schemas/PaginationSchema'
           description: A successful response
+      tags:
+      - notifications
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
-    put:
-      operationId: put_client_app_put
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ClientAppSchema'
-          description: A successful response
-      x-google-backend:
-        address: alertmanager
         protocol: h2
-        path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
-  /client_apps/{id}:
-    delete:
-      operationId: delete_client_app_get_delete
+  /notifications/{id}:
+    get:
+      operationId: get_notification_log_get
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/PolicyChannelSchema'
           description: A successful response
+      tags:
+      - notifications
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
+        protocol: h2
+  /policies:
     get:
-      operationId: get_client_app_get
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
+      operationId: get_policies_get_all
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientAppSchema'
+                $ref: '#/components/schemas/PaginationSchema'
           description: A successful response
+      tags:
+      - policies
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
+        protocol: h2
     post:
-      operationId: post_client_app_post
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
+      operationId: post_policies_post
       requestBody:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/ClientAppSchema'
+              $ref: '#/components/schemas/PolicySchema'
         required: false
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientAppSchema'
+                $ref: '#/components/schemas/PolicySchema'
           description: A successful response
+      tags:
+      - policies
+      x-codegen-request-body-name: requestBody
       x-google-backend:
         address: alertmanager
-        protocol: h2
+        deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
-        deadline: 30s
+        protocol: h2
+  /policies/{id}:
+    delete:
+      operationId: delete_policies_delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicySchema'
+          description: A successful response
+      tags:
+      - policies
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+    get:
+      operationId: get_policies_get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicySchema'
+          description: A successful response
+      tags:
+      - policies
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+    put:
+      operationId: put_policies_put
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PolicySchema'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicySchema'
+          description: A successful response
+      tags:
+      - policies
       x-codegen-request-body-name: requestBody
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
 components:
   schemas:
-    ClientAppSchema:
+    EventSchema:
       example:
-        deleted: true
+        schema_version: schema_version
+        severity: severity
+        event_type: event_type
+        data: "{}"
         updated_at: 2000-01-23T04:56:07.000+00:00
-        billing_id: billing_id
-        contract: contract
-        name: name
+        client_uuid: client_uuid
         created_at: 2000-01-23T04:56:07.000+00:00
+        client_source: client_source
         id: id
-        url: url
         labels: "{}"
-        token: token
+        status: status
       properties:
-        updated_at:
-          format: date-time
+        client_source:
+          description: Event souce
           type: string
-        name:
-          type: string
-        deleted:
-          type: boolean
-        contract:
-          type: string
-        labels:
-          nullable: true
-          type: object
-        id:
-          type: string
-        token:
+        client_uuid:
+          description: Client uuid. This is the id defined by client app
           type: string
         created_at:
           format: date-time
           type: string
-        url:
+        data:
+          description: Event data
+          type: object
+        event_type:
+          description: Event type
           type: string
-        billing_id:
+        id:
+          description: Id
+          type: string
+        labels:
+          description: Event labels
+          type: object
+        schema_version:
+          description: Event schema version. Can be used by client app to know how
+            to parse the event
+          type: string
+        severity:
+          description: Event severity
+          type: string
+        status:
+          description: "Event status, Received, Stored"
+          type: string
+        updated_at:
+          format: date-time
           type: string
       required:
+      - client_source
+      - client_uuid
+      - data
+      - event_type
       - id
+      - labels
+      - schema_version
+      - severity
+      - status
       type: object
-x-original-swagger-version: "2.0"
+    PaginationSchema:
+      example:
+        pageSize: 6
+        page: 0
+        totalRows: 1
+        rows:
+        - "{}"
+        - "{}"
+      properties:
+        page:
+          title: Page
+          type: integer
+        pageSize:
+          title: Pagesize
+          type: integer
+        rows:
+          items:
+            properties: {}
+            type: object
+          title: Rows
+          type: array
+        totalRows:
+          title: Totalrows
+          type: integer
+      required:
+      - page
+      - pageSize
+      - rows
+      - totalRows
+      title: PaginationSchema
+      type: object
+    PolicyChannelSchema:
+      example:
+        deleted: true
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        client_uuid: client_uuid
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        last_notification: 2000-01-23T04:56:07.000+00:00
+        type: type
+        config: "{}"
+        enabled: true
+      properties:
+        client_uuid:
+          description: Client uuid. This is the id defined by client app
+          type: string
+        config:
+          description: Policy Channel config
+          type: object
+        created_at:
+          format: date-time
+          type: string
+        deleted:
+          description: Policy Channel deleted flag
+          type: boolean
+        enabled:
+          description: Policy Channel enabled flag
+          type: boolean
+        id:
+          description: Id
+          type: string
+        last_notification:
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          description: Policy Channel name
+          type: string
+        type:
+          description: Policy Channel type
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - client_uuid
+      - config
+      - deleted
+      - enabled
+      - id
+      - name
+      - type
+      type: object
+    PolicySchema:
+      example:
+        severity: severity
+        frequency_minutes: 0
+        frequency_occurrences: 6
+        client_uuid: client_uuid
+        created_at: 2000-01-23T04:56:07.000+00:00
+        filters: "{}"
+        type: type
+        enabled: true
+        frequency: true
+        labels: "{}"
+        deleted: true
+        channels: "{}"
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        client_source: client_source
+        id: id
+      properties:
+        channels:
+          description: List of channel notification
+          type: object
+        client_source:
+          description: Policy Client source
+          type: string
+        client_uuid:
+          description: Policy Client UUID
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        deleted:
+          description: Policy deleted
+          type: boolean
+        enabled:
+          description: Policy enabled
+          type: boolean
+        filters:
+          description: Policy filters
+          type: object
+        frequency:
+          description: Enable alert frequency for the policy
+          type: boolean
+        frequency_minutes:
+          description: Quantity of alert interval time
+          type: integer
+        frequency_occurrences:
+          description: Quantity of alert occurrencies
+          type: integer
+        id:
+          description: Id
+          type: string
+        labels:
+          description: Policy labels
+          type: object
+        name:
+          description: Policy name
+          type: string
+        severity:
+          description: Policy severity
+          type: string
+        type:
+          description: Policy type
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - channels
+      - client_source
+      - client_uuid
+      - deleted
+      - enabled
+      - filters
+      - frequency
+      - frequency_minutes
+      - frequency_occurrences
+      - id
+      - labels
+      - name
+      - severity
+      - type
+      type: object
+  securitySchemes:
+    auth_token:
+      in: header
+      name: Authorization
+      type: apiKey

@@ -4,11 +4,80 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteEventsParametersDelete**](EventsAPI.md#DeleteEventsParametersDelete) | **Delete** /events/parameters/{app_key} | 
 [**GetEventsGet**](EventsAPI.md#GetEventsGet) | **Get** /events/{id} | 
 [**GetEventsGetAll**](EventsAPI.md#GetEventsGetAll) | **Get** /events | 
 [**GetEventsParametersGet**](EventsAPI.md#GetEventsParametersGet) | **Get** /events/parameters | 
 [**PostEventsPost**](EventsAPI.md#PostEventsPost) | **Post** /events | 
 
+
+
+## DeleteEventsParametersDelete
+
+> string DeleteEventsParametersDelete(ctx, appKey).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+    appKey := "appKey_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsAPI.DeleteEventsParametersDelete(context.Background(), appKey).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.DeleteEventsParametersDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteEventsParametersDelete`: string
+    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.DeleteEventsParametersDelete`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appKey** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteEventsParametersDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[auth_token](../README.md#auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetEventsGet

@@ -252,6 +252,31 @@ paths:
         deadline: 45
         path_translation: APPEND_PATH_TO_ADDRESS
         protocol: h2
+  /events/parameters/{app_key}:
+    delete:
+      operationId: delete_events_parameters_delete
+      parameters:
+      - explode: false
+        in: path
+        name: app_key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: A successful response
+      tags:
+      - events
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
   /events/{id}:
     get:
       operationId: get_events_get

@@ -22,6 +22,20 @@ func Test_labs_alert_manager_client_EventsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test EventsAPIService DeleteEventsParametersDelete", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var appKey string
+
+		resp, httpRes, err := apiClient.EventsAPI.DeleteEventsParametersDelete(context.Background(), appKey).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test EventsAPIService GetEventsGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

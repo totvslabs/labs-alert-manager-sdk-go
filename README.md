@@ -85,6 +85,7 @@ Class | Method | HTTP request | Description
 *ChannelsAPI* | [**PutPolicyChannelsPut**](docs/ChannelsAPI.md#putpolicychannelsput) | **Put** /channels/{id} | 
 *DocsAPI* | [**GetSwaggerJson**](docs/DocsAPI.md#getswaggerjson) | **Get** /docs/swagger.json | 
 *DocsAPI* | [**GetSwaggerYml**](docs/DocsAPI.md#getswaggeryml) | **Get** /docs/swagger.yml | 
+*EventsAPI* | [**DeleteEventsParametersDelete**](docs/EventsAPI.md#deleteeventsparametersdelete) | **Delete** /events/parameters/{app_key} | 
 *EventsAPI* | [**GetEventsGet**](docs/EventsAPI.md#geteventsget) | **Get** /events/{id} | 
 *EventsAPI* | [**GetEventsGetAll**](docs/EventsAPI.md#geteventsgetall) | **Get** /events | 
 *EventsAPI* | [**GetEventsParametersGet**](docs/EventsAPI.md#geteventsparametersget) | **Get** /events/parameters | 

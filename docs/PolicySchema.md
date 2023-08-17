@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | **map[string]interface{}** | List of channel notification | 
+**Channels** | **[]string** | List of channel notification | 
 **ClientSource** | **string** | Policy Client source | 
 **ClientUuid** | **string** | Policy Client UUID | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewPolicySchema
 
-`func NewPolicySchema(channels map[string]interface{}, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, labels map[string]interface{}, name string, severity string, type_ string, ) *PolicySchema`
+`func NewPolicySchema(channels []string, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, labels map[string]interface{}, name string, severity string, type_ string, ) *PolicySchema`
 
 NewPolicySchema instantiates a new PolicySchema object
 This constructor will assign default values to properties that have it defined,
@@ -42,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetChannels
 
-`func (o *PolicySchema) GetChannels() map[string]interface{}`
+`func (o *PolicySchema) GetChannels() []string`
 
 GetChannels returns the Channels field if non-nil, zero value otherwise.
 
 ### GetChannelsOk
 
-`func (o *PolicySchema) GetChannelsOk() (*map[string]interface{}, bool)`
+`func (o *PolicySchema) GetChannelsOk() (*[]string, bool)`
 
 GetChannelsOk returns a tuple with the Channels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannels
 
-`func (o *PolicySchema) SetChannels(v map[string]interface{})`
+`func (o *PolicySchema) SetChannels(v []string)`
 
 SetChannels sets Channels field to given value.
 

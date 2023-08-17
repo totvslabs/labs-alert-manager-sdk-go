@@ -48,4 +48,18 @@ func Test_labs_alert_manager_client_NotificationsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NotificationsAPIService PostNotificationLogResend", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.NotificationsAPI.PostNotificationLogResend(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

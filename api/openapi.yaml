@@ -349,7 +349,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PolicyChannelSchema'
+                $ref: '#/components/schemas/NotificationSchema'
+          description: A successful response
+      tags:
+      - notifications
+      x-google-backend:
+        address: alertmanager
+        deadline: 45
+        path_translation: APPEND_PATH_TO_ADDRESS
+        protocol: h2
+  /notifications/{id}/resend:
+    post:
+      operationId: post_notification_log_resend
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSchema'
           description: A successful response
       tags:
       - notifications
@@ -539,6 +564,59 @@ components:
       - severity
       - status
       type: object
+    NotificationSchema:
+      example:
+        retries: 0
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        client_uuid: client_uuid
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        events:
+        - events
+        - events
+        first_event: 2000-01-23T04:56:07.000+00:00
+        status: Queued
+      properties:
+        client_uuid:
+          description: Notification Client UUID
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        events:
+          description: List of notification events
+          items:
+            type: string
+          nullable: true
+          type: array
+        first_event:
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          description: Id
+          type: string
+        retries:
+          description: Quantity notification retries
+          nullable: true
+          type: integer
+        status:
+          description: Notification status
+          enum:
+          - Queued
+          - Processing
+          - Failed
+          - Success
+          maxLength: 10
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - client_uuid
+      - id
+      - status
+      type: object
     PaginationSchema:
       example:
         pageSize: 6
@@ -636,7 +714,9 @@ components:
         frequency: true
         labels: "{}"
         deleted: true
-        channels: "{}"
+        channels:
+        - channels
+        - channels
         updated_at: 2000-01-23T04:56:07.000+00:00
         name: name
         client_source: client_source
@@ -644,7 +724,9 @@ components:
       properties:
         channels:
           description: List of channel notification
-          type: object
+          items:
+            type: string
+          type: array
         client_source:
           description: Policy Client source
           type: string

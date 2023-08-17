@@ -21,7 +21,7 @@ var _ MappedNullable = &PolicySchema{}
 // PolicySchema struct for PolicySchema
 type PolicySchema struct {
 	// List of channel notification
-	Channels map[string]interface{} `json:"channels"`
+	Channels []string `json:"channels"`
 	// Policy Client source
 	ClientSource string `json:"client_source"`
 	// Policy Client UUID
@@ -56,7 +56,7 @@ type PolicySchema struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPolicySchema(channels map[string]interface{}, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, labels map[string]interface{}, name string, severity string, type_ string) *PolicySchema {
+func NewPolicySchema(channels []string, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, labels map[string]interface{}, name string, severity string, type_ string) *PolicySchema {
 	this := PolicySchema{}
 	this.Channels = channels
 	this.ClientSource = clientSource
@@ -84,9 +84,9 @@ func NewPolicySchemaWithDefaults() *PolicySchema {
 }
 
 // GetChannels returns the Channels field value
-func (o *PolicySchema) GetChannels() map[string]interface{} {
+func (o *PolicySchema) GetChannels() []string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []string
 		return ret
 	}
 
@@ -95,15 +95,15 @@ func (o *PolicySchema) GetChannels() map[string]interface{} {
 
 // GetChannelsOk returns a tuple with the Channels field value
 // and a boolean to check if the value has been set.
-func (o *PolicySchema) GetChannelsOk() (map[string]interface{}, bool) {
+func (o *PolicySchema) GetChannelsOk() ([]string, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Channels, true
 }
 
 // SetChannels sets field value
-func (o *PolicySchema) SetChannels(v map[string]interface{}) {
+func (o *PolicySchema) SetChannels(v []string) {
 	o.Channels = v
 }
 

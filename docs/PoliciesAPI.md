@@ -226,7 +226,7 @@ import (
 )
 
 func main() {
-    requestBody := *openapiclient.NewPolicySchema(map[string]interface{}(123), "ClientSource_example", "ClientUuid_example", false, false, map[string]interface{}(123), false, int32(123), int32(123), "Id_example", map[string]interface{}(123), "Name_example", "Severity_example", "Type_example") // PolicySchema |  (optional)
+    requestBody := *openapiclient.NewPolicySchema([]string{"Channels_example"}, "ClientSource_example", "ClientUuid_example", false, false, map[string]interface{}(123), false, int32(123), int32(123), "Id_example", map[string]interface{}(123), "Name_example", "Severity_example", "Type_example") // PolicySchema |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -291,7 +291,7 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    requestBody := *openapiclient.NewPolicySchema(map[string]interface{}(123), "ClientSource_example", "ClientUuid_example", false, false, map[string]interface{}(123), false, int32(123), int32(123), "Id_example", map[string]interface{}(123), "Name_example", "Severity_example", "Type_example") // PolicySchema |  (optional)
+    requestBody := *openapiclient.NewPolicySchema([]string{"Channels_example"}, "ClientSource_example", "ClientUuid_example", false, false, map[string]interface{}(123), false, int32(123), int32(123), "Id_example", map[string]interface{}(123), "Name_example", "Severity_example", "Type_example") // PolicySchema |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

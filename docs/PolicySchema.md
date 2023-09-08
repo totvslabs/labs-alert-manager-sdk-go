@@ -15,17 +15,14 @@ Name | Type | Description | Notes
 **FrequencyMinutes** | **int32** | Quantity of alert interval time | 
 **FrequencyOccurrences** | **int32** | Quantity of alert occurrencies | 
 **Id** | **string** | Id | 
-**Labels** | **map[string]interface{}** | Policy labels | 
 **Name** | **string** | Policy name | 
-**Severity** | **string** | Policy severity | 
-**Type** | **string** | Policy type | 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewPolicySchema
 
-`func NewPolicySchema(channels []string, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, labels map[string]interface{}, name string, severity string, type_ string, ) *PolicySchema`
+`func NewPolicySchema(channels []string, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, name string, ) *PolicySchema`
 
 NewPolicySchema instantiates a new PolicySchema object
 This constructor will assign default values to properties that have it defined,
@@ -265,26 +262,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetLabels
-
-`func (o *PolicySchema) GetLabels() map[string]interface{}`
-
-GetLabels returns the Labels field if non-nil, zero value otherwise.
-
-### GetLabelsOk
-
-`func (o *PolicySchema) GetLabelsOk() (*map[string]interface{}, bool)`
-
-GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabels
-
-`func (o *PolicySchema) SetLabels(v map[string]interface{})`
-
-SetLabels sets Labels field to given value.
-
-
 ### GetName
 
 `func (o *PolicySchema) GetName() string`
@@ -303,46 +280,6 @@ and a boolean to check if the value has been set.
 `func (o *PolicySchema) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetSeverity
-
-`func (o *PolicySchema) GetSeverity() string`
-
-GetSeverity returns the Severity field if non-nil, zero value otherwise.
-
-### GetSeverityOk
-
-`func (o *PolicySchema) GetSeverityOk() (*string, bool)`
-
-GetSeverityOk returns a tuple with the Severity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSeverity
-
-`func (o *PolicySchema) SetSeverity(v string)`
-
-SetSeverity sets Severity field to given value.
-
-
-### GetType
-
-`func (o *PolicySchema) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PolicySchema) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PolicySchema) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 ### GetUpdatedAt

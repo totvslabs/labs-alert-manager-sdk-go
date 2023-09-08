@@ -41,14 +41,8 @@ type PolicySchema struct {
 	FrequencyOccurrences int32 `json:"frequency_occurrences"`
 	// Id
 	Id string `json:"id"`
-	// Policy labels
-	Labels map[string]interface{} `json:"labels"`
 	// Policy name
 	Name string `json:"name"`
-	// Policy severity
-	Severity string `json:"severity"`
-	// Policy type
-	Type string `json:"type"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
@@ -56,7 +50,7 @@ type PolicySchema struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPolicySchema(channels []string, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, labels map[string]interface{}, name string, severity string, type_ string) *PolicySchema {
+func NewPolicySchema(channels []string, clientSource string, clientUuid string, deleted bool, enabled bool, filters map[string]interface{}, frequency bool, frequencyMinutes int32, frequencyOccurrences int32, id string, name string) *PolicySchema {
 	this := PolicySchema{}
 	this.Channels = channels
 	this.ClientSource = clientSource
@@ -68,10 +62,7 @@ func NewPolicySchema(channels []string, clientSource string, clientUuid string, 
 	this.FrequencyMinutes = frequencyMinutes
 	this.FrequencyOccurrences = frequencyOccurrences
 	this.Id = id
-	this.Labels = labels
 	this.Name = name
-	this.Severity = severity
-	this.Type = type_
 	return &this
 }
 
@@ -355,30 +346,6 @@ func (o *PolicySchema) SetId(v string) {
 	o.Id = v
 }
 
-// GetLabels returns the Labels field value
-func (o *PolicySchema) GetLabels() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value
-// and a boolean to check if the value has been set.
-func (o *PolicySchema) GetLabelsOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Labels, true
-}
-
-// SetLabels sets field value
-func (o *PolicySchema) SetLabels(v map[string]interface{}) {
-	o.Labels = v
-}
-
 // GetName returns the Name field value
 func (o *PolicySchema) GetName() string {
 	if o == nil {
@@ -401,54 +368,6 @@ func (o *PolicySchema) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *PolicySchema) SetName(v string) {
 	o.Name = v
-}
-
-// GetSeverity returns the Severity field value
-func (o *PolicySchema) GetSeverity() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Severity
-}
-
-// GetSeverityOk returns a tuple with the Severity field value
-// and a boolean to check if the value has been set.
-func (o *PolicySchema) GetSeverityOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Severity, true
-}
-
-// SetSeverity sets field value
-func (o *PolicySchema) SetSeverity(v string) {
-	o.Severity = v
-}
-
-// GetType returns the Type field value
-func (o *PolicySchema) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *PolicySchema) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *PolicySchema) SetType(v string) {
-	o.Type = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -506,10 +425,7 @@ func (o PolicySchema) ToMap() (map[string]interface{}, error) {
 	toSerialize["frequency_minutes"] = o.FrequencyMinutes
 	toSerialize["frequency_occurrences"] = o.FrequencyOccurrences
 	toSerialize["id"] = o.Id
-	toSerialize["labels"] = o.Labels
 	toSerialize["name"] = o.Name
-	toSerialize["severity"] = o.Severity
-	toSerialize["type"] = o.Type
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}

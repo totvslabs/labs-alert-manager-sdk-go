@@ -703,16 +703,13 @@ components:
       type: object
     PolicySchema:
       example:
-        severity: severity
         frequency_minutes: 0
         frequency_occurrences: 6
         client_uuid: client_uuid
         created_at: 2000-01-23T04:56:07.000+00:00
         filters: "{}"
-        type: type
         enabled: true
         frequency: true
-        labels: "{}"
         deleted: true
         channels:
         - channels
@@ -757,17 +754,8 @@ components:
         id:
           description: Id
           type: string
-        labels:
-          description: Policy labels
-          type: object
         name:
           description: Policy name
-          type: string
-        severity:
-          description: Policy severity
-          type: string
-        type:
-          description: Policy type
           type: string
         updated_at:
           format: date-time
@@ -783,10 +771,7 @@ components:
       - frequency_minutes
       - frequency_occurrences
       - id
-      - labels
       - name
-      - severity
-      - type
       type: object
   securitySchemes:
     auth_token:

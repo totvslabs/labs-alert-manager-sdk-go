@@ -36,7 +36,7 @@ Default configuration comes with `Servers` field that contains server objects as
 
 ### Select Server Configuration
 
-For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
+For using other server than the one defined on index 0 set context value `labs_alert_manager_client.ContextServerIndex` of type `int`.
 
 ```golang
 ctx := context.WithValue(context.Background(), labs_alert_manager_client.ContextServerIndex, 1)
@@ -44,7 +44,7 @@ ctx := context.WithValue(context.Background(), labs_alert_manager_client.Context
 
 ### Templated Server URL
 
-Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
+Templated server URL is formatted using default variables from configuration or from context value `labs_alert_manager_client.ContextServerVariables` of type `map[string]string`.
 
 ```golang
 ctx := context.WithValue(context.Background(), labs_alert_manager_client.ContextServerVariables, map[string]string{
@@ -58,7 +58,7 @@ Note, enum values are always validated and all unused variables are silently ign
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
-Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+Similar rules for overriding default operation server index and variables applies by using `labs_alert_manager_client.ContextOperationServerIndices` and `labs_alert_manager_client.ContextOperationServerVariables` context maps.
 
 ```golang
 ctx := context.WithValue(context.Background(), labs_alert_manager_client.ContextOperationServerIndices, map[string]int{
@@ -128,8 +128,8 @@ Example
 ```golang
 auth := context.WithValue(
 		context.Background(),
-		sw.ContextAPIKeys,
-		map[string]sw.APIKey{
+		labs_alert_manager_client.ContextAPIKeys,
+		map[string]labs_alert_manager_client.APIKey{
 			"Authorization": {Key: "API_KEY_STRING"},
 		},
 	)

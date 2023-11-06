@@ -13,6 +13,7 @@ package labs_alert_manager_client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the PolicySchema type satisfies the MappedNullable interface at compile time
@@ -45,6 +46,8 @@ type PolicySchema struct {
 	Name string `json:"name"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
+
+type _PolicySchema PolicySchema
 
 // NewPolicySchema instantiates a new PolicySchema object
 // This constructor will assign default values to properties that have it defined,
@@ -430,6 +433,51 @@ func (o PolicySchema) ToMap() (map[string]interface{}, error) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return toSerialize, nil
+}
+
+func (o *PolicySchema) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"channels",
+		"client_source",
+		"client_uuid",
+		"deleted",
+		"enabled",
+		"filters",
+		"frequency",
+		"frequency_minutes",
+		"frequency_occurrences",
+		"id",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPolicySchema := _PolicySchema{}
+
+	err = json.Unmarshal(bytes, &varPolicySchema)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PolicySchema(varPolicySchema)
+
+	return err
 }
 
 type NullablePolicySchema struct {

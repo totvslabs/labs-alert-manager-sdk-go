@@ -13,6 +13,7 @@ package labs_alert_manager_client
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the EventSchema type satisfies the MappedNullable interface at compile time
@@ -41,6 +42,8 @@ type EventSchema struct {
 	Status string `json:"status"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
+
+type _EventSchema EventSchema
 
 // NewEventSchema instantiates a new EventSchema object
 // This constructor will assign default values to properties that have it defined,
@@ -374,6 +377,49 @@ func (o EventSchema) ToMap() (map[string]interface{}, error) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	return toSerialize, nil
+}
+
+func (o *EventSchema) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"client_source",
+		"client_uuid",
+		"data",
+		"event_type",
+		"id",
+		"labels",
+		"schema_version",
+		"severity",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEventSchema := _EventSchema{}
+
+	err = json.Unmarshal(bytes, &varEventSchema)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EventSchema(varEventSchema)
+
+	return err
 }
 
 type NullableEventSchema struct {
